@@ -50,8 +50,8 @@ On the door is a handwritten sign. \n`;
 */
 while (myStart = true) {
   if (answer.includes('12345')) {
-    let myStart = false;
-    let inFoyer = true;
+    myStart = false;
+    inFoyer = true;
     foyer();
   } else if (answer.includes('read sign')) {
     console.log("The sign says 'Welcome to Burlington Code Academy! Come on up to the third floor. If the door is locked, use the code 12345.'");
