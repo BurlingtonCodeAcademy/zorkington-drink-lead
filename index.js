@@ -35,8 +35,6 @@ function enterState(newState) {
 let inventory = {
 
 }
-let myStart = true;
-let inFoyer = false;
 start();
 async function start() {
   const welcomeMessage = `182 Main St.
@@ -50,8 +48,7 @@ On the door is a handwritten sign. \n`;
 */
 while (myStart = true) {
   if (answer.includes('12345')) {
-    let myStart = false;
-    let inFoyer = true;
+    myStart = false;
     foyer();
   } else if (answer.includes('read sign')) {
     console.log("The sign says 'Welcome to Burlington Code Academy! Come on up to the third floor. If the door is locked, use the code 12345.'");
@@ -65,16 +62,22 @@ while (myStart = true) {
     }
 }
 }
+let inFoyer = true;
 foyer();
 async function foyer() {
-  const welcomeFoyer = 'Welcome to the foyer at Burlington Code Academy. In the corner of the room you see a copy of Seven Days. You also see a set of stairs leading upwards. \n';
-  let answer2 = await ask(welcomeFoyer);
-  if (answer2.includes('take')) {
-    console.log('You have taken a copy of Seven Days')
-    inventory.sevenDays = true;
-    answer2 = await ask('');
-  } else if (answer2.includes('stairs')) {
-    let foyer = false;
+  const welcomeFoyer = `Foyer message (this is repeating) \n`;
+  var answer2 = await ask(welcomeFoyer);
+  var answer2 = answer2.toLowerCase();
+  while (inFoyer = true) {
+    if (answer2.includes('take')) {
+      console.log('You have taken a copy of Seven Days')
+      inventory.sevenDays = true;
+      answer2 = await ask('');
+    } else if (answer2.includes('stairs')) {
+      let inFoyer = false;
+    } else if (answer2.includes('inventory') || answer2 == 'i') {
+      console.log(inventory);
+    } 
   }
 
 /*
