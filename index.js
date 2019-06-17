@@ -41,9 +41,10 @@ async function begin() {
       firstLoop = false;
     } else if (answer.includes('read')) {
       answer = await ask("The sign reads: 'Welcome to Burlington Code Academy'. Come on up. If the door is locked enter 12345. \n")
-    }
-    else {
-      answer = await ask('');
+    } else if (answer.includes('take') && answer.includes('sign')){
+      answer = await ask('You cannot take the sign, it is bolted to the wall');
+    } else {
+      answer = await ask('Im sorry, I cannot ' + answer + '\n');
     }
   }
 }
@@ -65,6 +66,8 @@ async function stateTwo() {
     } else if (answer2.includes('stairs' || answer2.includes('upstairs'))) {
       stateThree();
       secondLoop = false;
+    } else if (answer2.includes('read')) {
+      answer2= await ask("Seven Days features an article about how Johnson State's Rugby team was decimated by a group of 5th graders.\n")
     } else {
       answer2 = await ask("I'm sorry, I cannot " + answer2)
     }
@@ -77,12 +80,15 @@ SECOND ROOM ENDS/BEGIN THIRD ROOM ++++++++++++++++++++++++++++++++++++++++++++++
 async function stateThree() {
   //TO DO: THIS WILL BE THE THIRD FLOOR HALLWAY
   let thirdLoop = true;
-  let answer3 = await ask('Third Room \n')
+  let answer3 = await ask('You are in the third floor hallway. To your right is a bathroom, down the hall is Eternity Web and the Burlington Coding Academy \n')
   while (thirdLoop === true) {
-    if (answer3 == 'backward') {
-      stateTwo();
+    if (answer3.includes('eternity')) {
+      stateSix();
       thirdLoop = false;
-    } else if (answer3 == 'forward') {
+    } else if (answer3.includes('classroom') || answer3.includes('academy') || answer3.includes('coding')) {
+      stateFive();
+      thirdLoop = false;
+    } else if (answer3.includes('bathroom')) {
       stateFour();
       thirdLoop = false;
     }
@@ -95,9 +101,9 @@ THIRD ROOM ENDS/FOURTH ROOM BEGINS +++++++++++++++++++++++++++++++++++++++++++++
 async function stateFour() {
   //THIS WILL BE THE BATHROOM
   let fourthLoop = true;
-  let answer4 = await ask('Fourth Room \n')
+  let answer4 = await ask('Welcome to the bathroom. \n')
   while (fourthLoop === true) {
-    if (answer4 == 'backward') {
+    if (answer4.includes('hall')) {
       stateThree();
       fourthLoop = false;
     }
@@ -110,9 +116,9 @@ FOURTH ROOM ENDS/FIFTH ROOM BEGINS +++++++++++++++++++++++++++++++++++++++++++++
 async function stateFive() {
   //THIS WILL BE THE CLASSROOM
   let fifthLoop = true;
-  let answer5 = await ask('Fourth Five \n')
+  let answer5 = await ask('Welcome to the Burlington Coding Academy. In the corner of the room you see Bobs elegant hat')
   while (fifthLoop === true) {
-    if (answer5 == 'backward') {
+    if (answer5.includes('hall')) {
       stateFour();
       fourthLoop = false;
     }
@@ -125,10 +131,10 @@ FIFTH ROOM ENDS/SIXTH ROOM BEGINS ++++++++++++++++++++++++++++++++++++++++++++++
 async function stateSix() {
   //THIS WILL BE ETERNITY WEB
   let sixthLoop = true;
-  let answer6 = await ask('Fourth Room \n')
+  let answer6 = await ask('Welcome to Eternity web. On the main desk you see a pile of change. \n')
   while (sixthLoop === true) {
-    if (answer6 == 'backward') {
-      stateFive();
+    if (answer6.includes('hall')) {
+      stateFour();
       sixthLoop = false;
     }
   }
