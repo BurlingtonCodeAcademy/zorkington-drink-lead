@@ -26,6 +26,17 @@ let inv = {
 let userStatus = {
 //IGNORE FOR NOW
 }
+function showInv() {
+  for (const key in inv) {
+    if (inv.hasOwnProperty(key)) {
+      const element = inv[key];
+      console.log(element);
+    } else {
+      console.log('you have nothing in your inventory!');
+    }
+  }
+}
+
 /*
 FIRST ROOM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -43,6 +54,9 @@ async function begin() {
       answer = await ask("The sign reads: 'Welcome to Burlington Code Academy'. Come on up. If the door is locked enter 12345. \n")
     } else if (answer.includes('take') && answer.includes('sign')){
       answer = await ask('You cannot take the sign, it is bolted to the wall');
+    } else if (answer.includes('inv') || answer === 'i') {
+      showInv();
+      answer = await ask('\n')
     } else {
       answer = await ask('Im sorry, I cannot ' + answer + '\n');
     }
