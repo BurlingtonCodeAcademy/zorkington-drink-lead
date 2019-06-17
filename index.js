@@ -43,10 +43,14 @@ async function begin() {
       answer = await ask("The sign reads: 'Welcome to Burlington Code Academy'. Come on up. If the door is locked enter 12345. \n")
     } else if (answer.includes('take') && answer.includes('sign')){
       answer = await ask('You cannot take the sign, it is bolted to the wall');
-    } else {
-      answer = await ask('Im sorry, I cannot ' + answer + '\n');
-    }
+    } else if (answer.includes('left')) {
+    stateSeven();
+    firstLoop = false;
+  } else {
+  answer = await ask('Im sorry, I cannot ' + answer + '\n');
+    
   }
+}
 }
 /* 
 END FIRST ROOM/BEGIN SECOND ROOM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -142,25 +146,25 @@ async function stateSix() {
 //Sparechange Lady
 async function stateSeven() {
    let seventhLoop = true;
-  let answer7 = await ask('Fourth Room \n')
+  let answer7 = await ask('You are in front of Mirabelles, a kind lady asks if you have any sparechange. Did you find any that you could give her? \n')
   while (seventhLoop === true) {
     if (answer7== 'right') {
       begin();
-      SeventhLoop = false;
+      seventhLoop = false;
     } else if (answer7== 'left') {
       stateEight();
-      SeventhLoop = false;    
+      seventhLoop = false;    
     }
   }
 }
 //Mirabelles
 async function stateEight() {
     let eigthLoop = true;
-  let answer8 = await ask('Fourth Room \n')
+  let answer8 = await ask('You have reached the Mirabelles counter, would you like a coffee, pastry or cake? \n')
   while (eigththLoop === true) {
     if (answer8 == 'right') {
       stateseven();
-      sixthLoop = false;
+      eigthLoop = false;
     }
   }
 }
