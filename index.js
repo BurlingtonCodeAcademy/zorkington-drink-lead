@@ -69,7 +69,7 @@ async function stateTwo() {
     } else if (answer2.includes('read')) {
       answer2= await ask("Seven Days features an article about how Johnson State's Rugby team was decimated by a group of 5th graders.\n")
     } else {
-      answer2 = await ask("I'm sorry, I cannot " + answer2)
+      answer2 = await ask("I'm sorry, I cannot go" + answer2)
     }
   }
 }
@@ -119,8 +119,8 @@ async function stateFive() {
   let answer5 = await ask('Welcome to the Burlington Coding Academy. In the corner of the room you see Bobs elegant hat')
   while (fifthLoop === true) {
     if (answer5.includes('hall')) {
-      stateFour();
-      fourthLoop = false;
+      stateThree();
+      fifthLoop = false;
     }
   }
 }
@@ -134,7 +134,32 @@ async function stateSix() {
   let answer6 = await ask('Welcome to Eternity web. On the main desk you see a pile of change. \n')
   while (sixthLoop === true) {
     if (answer6.includes('hall')) {
-      stateFour();
+      stateThree();
+      sixthLoop = false;
+    }
+  }
+}
+//Sparechange Lady
+async function stateSeven() {
+   let seventhLoop = true;
+  let answer7 = await ask('Fourth Room \n')
+  while (seventhLoop === true) {
+    if (answer7== 'right') {
+      begin();
+      SeventhLoop = false;
+    } else if (answer7== 'left') {
+      stateEight();
+      SeventhLoop = false;    
+    }
+  }
+}
+//Mirabelles
+async function stateEight() {
+    let eigthLoop = true;
+  let answer8 = await ask('Fourth Room \n')
+  while (eigththLoop === true) {
+    if (answer8 == 'right') {
+      stateseven();
       sixthLoop = false;
     }
   }
