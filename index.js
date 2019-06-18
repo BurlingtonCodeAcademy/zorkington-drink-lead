@@ -26,7 +26,7 @@ async function myFunk() {
   let userStatus = {
     //IGNORE FOR NOW
   };
-function showInv() {
+  function showInv() {
     for (const key in inv) {
       if (inv.hasOwnProperty(key)) {
         const element = inv[key];
@@ -172,19 +172,26 @@ FOURTH ROOM ENDS/FIFTH ROOM BEGINS +++++++++++++++++++++++++++++++++++++++++++++
       } else if (answer5.includes("inv") || answer5 === "i") {
         showInv();
         answer5 = await ask("\n");
-      } else if (answer5.includes('take') && answer5.includes('hat')) {
-        inv.hat = "Bob's Elegant Hat"
-        answer5 = await ask('You have taken Bobs Elegant Coding SuperPowers Hat \n')
-      } else if (answer5.includes('take') && answer5.includes('cheat sheet')) {
-        inv.vtcs = "Vermont Tech Cheat Sheet"
-        answer5 = await ask('You have taken Sams Vermont Tech Cheat Sheet\n')
-      } else if (answer5.includes('fix bug') && inv.vtcs == "Vermont Tech Cheat Sheet" && inv.hat == "Bob's Elegant Hat") {
-        console.log('Using the combined superpowers of Bobs Elegant Hat and Sams Vermont Tech Cheat Sheet you have fixed the bug!\n');
+      } else if (answer5.includes("take") && answer5.includes("hat")) {
+        inv.hat = "Bob's Elegant Hat";
+        answer5 = await ask(
+          "You have taken Bobs Elegant Coding SuperPowers Hat \n"
+        );
+      } else if (answer5.includes("take") && answer5.includes("cheat sheet")) {
+        inv.vtcs = "Vermont Tech Cheat Sheet";
+        answer5 = await ask("You have taken Sams Vermont Tech Cheat Sheet\n");
+      } else if (
+        answer5.includes("fix bug") &&
+        inv.vtcs == "Vermont Tech Cheat Sheet" &&
+        inv.hat == "Bob's Elegant Hat"
+      ) {
+        console.log(
+          "Using the combined superpowers of Bobs Elegant Hat and Sams Vermont Tech Cheat Sheet you have fixed the bug and won the game!\n"
+        );
         fifthLoop = false;
         break;
         process.exit;
-      }
-      else {
+      } else {
         answer5 = await ask("Im sorry, I cannot " + answer5 + "\n");
       }
     }
@@ -197,7 +204,7 @@ FIFTH ROOM ENDS/SIXTH ROOM BEGINS ++++++++++++++++++++++++++++++++++++++++++++++
     //THIS WILL BE ETERNITY WEB
     let sixthLoop = true;
     let answer6 = await ask(
-      "Welcome to Eternity web. On the main desk you see a pile of change. \n"
+      "Welcome to Eternity web. Maybe I should apply to work here? On the main desk you see a pile of change. \n"
     );
     while (sixthLoop === true) {
       if (answer6.includes("hall")) {
@@ -208,7 +215,11 @@ FIFTH ROOM ENDS/SIXTH ROOM BEGINS ++++++++++++++++++++++++++++++++++++++++++++++
         answer6 = await ask("\n");
       } else if (answer6.includes("take") || answer6.includes("change")) {
         inv.change = "Change";
-        answer6 = await ask("You have taken the pile of change.");
+        answer6 = await ask("You have taken the pile of change. \n");
+      } else if (answer6.includes("apply") || answer6.includes("job")) {
+        answer6 = await ask(
+          "They don't want to hire you. Perhaps you should go back to class and fix the bug!"
+        );
       } else {
         answer6 = await ask("Im sorry, I cannot " + answer6 + "\n");
       }
@@ -217,7 +228,9 @@ FIFTH ROOM ENDS/SIXTH ROOM BEGINS ++++++++++++++++++++++++++++++++++++++++++++++
   //Sparechange Lady
   async function stateSeven() {
     let seventhLoop = true;
-    let answer7 = await ask("Sparechange lady looks mighty hungry. Do you have any change for her? \n");
+    let answer7 = await ask(
+      "Sparechange lady looks mighty hungry. Do you have any change for her? \n"
+    );
     while (seventhLoop === true) {
       if (answer7 == "right") {
         begin();
