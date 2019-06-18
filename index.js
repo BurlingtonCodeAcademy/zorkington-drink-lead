@@ -26,7 +26,7 @@ async function myFunk() {
   let userStatus = {
     //IGNORE FOR NOW
   };
-  function showInv() {
+function showInv() {
     for (const key in inv) {
       if (inv.hasOwnProperty(key)) {
         const element = inv[key];
@@ -125,7 +125,7 @@ SECOND ROOM ENDS/BEGIN THIRD ROOM ++++++++++++++++++++++++++++++++++++++++++++++
       } else if (answer3.includes("bathroom")) {
         stateFour();
         thirdLoop = false;
-      } else if (answer3.includes("inv") || answer === "i") {
+      } else if (answer3.includes("inv") || answer3 === "i") {
         showInv();
         answer3 = await ask("\n");
       } else {
@@ -147,7 +147,7 @@ THIRD ROOM ENDS/FOURTH ROOM BEGINS +++++++++++++++++++++++++++++++++++++++++++++
       if (answer4.includes("hall")) {
         stateThree();
         fourthLoop = false;
-      } else if (answer4.includes("inv") || answer === "i") {
+      } else if (answer4.includes("inv") || answer4 == "i") {
         showInv();
         answer4 = await ask("\n");
       } else {
@@ -163,16 +163,28 @@ FOURTH ROOM ENDS/FIFTH ROOM BEGINS +++++++++++++++++++++++++++++++++++++++++++++
     //THIS WILL BE THE CLASSROOM
     let fifthLoop = true;
     let answer5 = await ask(
-      "Welcome to the Burlington Coding Academy. In the back corner of the room you see Bobs elegant hat. You also see a copy of Sam's Vermont Tech cheat sheet."
+      "Welcome to the Burlington Coding Academy. In the back corner of the room you see Bobs elegant hat. You also see a copy of Sam's Vermont Tech cheat sheet. In the front of the room there is a laptop. VS Code is open. There appears to be a serious bug. Maybe you should fix it, but you will need some things before you fix the bug.\n"
     );
     while (fifthLoop === true) {
       if (answer5.includes("hall")) {
         stateThree();
         fifthLoop = false;
-      } else if (answer5.includes("inv") || answer === "i") {
+      } else if (answer5.includes("inv") || answer5 === "i") {
         showInv();
         answer5 = await ask("\n");
-      } else {
+      } else if (answer5.includes('take') && answer5.includes('hat')) {
+        inv.hat = "Bob's Elegant Hat"
+        answer5 = await ask('You have taken Bobs Elegant Coding SuperPowers Hat \n')
+      } else if (answer5.includes('take') && answer5.includes('cheat sheet')) {
+        inv.vtcs = "Vermont Tech Cheat Sheet"
+        answer5 = await ask('You have taken Sams Vermont Tech Cheat Sheet\n')
+      } else if (answer5.includes('fix bug') && inv.vtcs == "Vermont Tech Cheat Sheet" && inv.hat == "Bob's Elegant Hat") {
+        console.log('Using the combined superpowers of Bobs Elegant Hat and Sams Vermont Tech Cheat Sheet you have fixed the bug!\n');
+        fifthLoop = false;
+        break;
+        process.exit;
+      }
+      else {
         answer5 = await ask("Im sorry, I cannot " + answer5 + "\n");
       }
     }
@@ -191,10 +203,10 @@ FIFTH ROOM ENDS/SIXTH ROOM BEGINS ++++++++++++++++++++++++++++++++++++++++++++++
       if (answer6.includes("hall")) {
         stateThree();
         sixthLoop = false;
-      } else if (answer.includes("inv") || answer === "i") {
+      } else if (answer6.includes("inv") || answer6 == "i") {
         showInv();
         answer6 = await ask("\n");
-      } else if (answer.includes("take") || answer.includes("change")) {
+      } else if (answer6.includes("take") || answer6.includes("change")) {
         inv.change = "Change";
         answer6 = await ask("You have taken the pile of change.");
       } else {
@@ -205,7 +217,7 @@ FIFTH ROOM ENDS/SIXTH ROOM BEGINS ++++++++++++++++++++++++++++++++++++++++++++++
   //Sparechange Lady
   async function stateSeven() {
     let seventhLoop = true;
-    let answer7 = await ask("Fourth Room \n");
+    let answer7 = await ask("Sparechange lady looks mighty hungry. Do you have any change for her? \n");
     while (seventhLoop === true) {
       if (answer7 == "right") {
         begin();
@@ -213,7 +225,7 @@ FIFTH ROOM ENDS/SIXTH ROOM BEGINS ++++++++++++++++++++++++++++++++++++++++++++++
       } else if (answer7 == "left") {
         stateEight();
         seventhLoop = false;
-      } else if (answer7.includes("inv") || answer === "i") {
+      } else if (answer7.includes("inv") || answer7 === "i") {
         showInv();
         answer7 = await ask("\n");
       } else {
@@ -224,12 +236,12 @@ FIFTH ROOM ENDS/SIXTH ROOM BEGINS ++++++++++++++++++++++++++++++++++++++++++++++
   //Mirabelles
   async function stateEight() {
     let eigthLoop = true;
-    let answer8 = await ask("Fourth Room \n");
+    let answer8 = await ask("Welcome to Mirabelles. \n");
     while (eigththLoop === true) {
       if (answer8 == "right") {
         stateseven();
         eigthLoop = false;
-      } else if (answer8.includes("inv") || answer === "i") {
+      } else if (answer8.includes("inv") || answer8 === "i") {
         showInv();
         answer8 = await ask("\n");
       } else {
