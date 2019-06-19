@@ -48,7 +48,7 @@ FIRST ROOM +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     let answer = await ask(
       "You are standing on Main Street between Church and South Winooski. There is a door here. A keypad sits on the handle. On the door is a handwritten sign. \n"
     );
-    while (firstLoop === true) {
+    while (firstLoop) {
       if (answer.includes("12345")) {
         stateTwo();
         firstLoop = false;
@@ -78,7 +78,7 @@ END FIRST ROOM/BEGIN SECOND ROOM +++++++++++++++++++++++++++++++++++++++++++++++
     let answer2 = await ask(
       "Welcome to the foyer at Burlington Code Academy. In front of you is a set of stairs going up. In the corner is a copy of Seven Days. \n"
     );
-    while (secondLoop === true) {
+    while (secondLoop) {
       if (answer2.includes("back") || answer2.includes("leave")) {
         begin();
         secondLoop = false;
@@ -111,7 +111,7 @@ SECOND ROOM ENDS/BEGIN THIRD ROOM ++++++++++++++++++++++++++++++++++++++++++++++
     let answer3 = await ask(
       "You are in the third floor hallway. To your right is a bathroom, down the hall is Eternity Web and the Burlington Coding Academy \n"
     );
-    while (thirdLoop === true) {
+    while (thirdLoop) {
       if (answer3.includes("eternity")) {
         stateSix();
         thirdLoop = false;
@@ -143,7 +143,7 @@ THIRD ROOM ENDS/FOURTH ROOM BEGINS +++++++++++++++++++++++++++++++++++++++++++++
     let answer4 = await ask(
       "Welcome to the bathroom. There's nothing interesting here. Perhaps you should go back to the hall. \n"
     );
-    while (fourthLoop === true) {
+    while (fourthLoop) {
       if (answer4.includes("hall")) {
         stateThree();
         fourthLoop = false;
@@ -165,7 +165,7 @@ FOURTH ROOM ENDS/FIFTH ROOM BEGINS +++++++++++++++++++++++++++++++++++++++++++++
     let answer5 = await ask(
       "Welcome to the Burlington Coding Academy. In the back corner of the room you see Bobs elegant hat. You also see a copy of Sam's Vermont Tech cheat sheet. In the front of the room there is a laptop. VS Code is open. There appears to be a serious bug. Maybe you should fix it, but you will need some things before you fix the bug.\n"
     );
-    while (fifthLoop === true) {
+    while (fifthLoop) {
       if (answer5.includes("hall")) {
         stateThree();
         fifthLoop = false;
@@ -186,8 +186,7 @@ FOURTH ROOM ENDS/FIFTH ROOM BEGINS +++++++++++++++++++++++++++++++++++++++++++++
         inv.hat == "Bob's Elegant Hat"
       ) {
         console.log(
-          "Using the combined superpowers of Bobs Elegant Hat and Sams Vermont Tech Cheat Sheet you have fixed the bug and won the game!\n"
-        );
+          "Using the combined superpowers of Bobs Elegant Hat and Sams Vermont Tech Cheat Sheet you have fixed the bug and won the game!\n");
         fifthLoop = false;
         break;
         process.exit;
@@ -206,7 +205,7 @@ FIFTH ROOM ENDS/SIXTH ROOM BEGINS ++++++++++++++++++++++++++++++++++++++++++++++
     let answer6 = await ask(
       "Welcome to Eternity web. Maybe I should apply to work here? On the main desk you see a pile of change. \n"
     );
-    while (sixthLoop === true) {
+    while (sixthLoop) {
       if (answer6.includes("hall")) {
         stateThree();
         sixthLoop = false;
@@ -231,7 +230,7 @@ FIFTH ROOM ENDS/SIXTH ROOM BEGINS ++++++++++++++++++++++++++++++++++++++++++++++
     let answer7 = await ask(
       "Sparechange lady looks mighty hungry. Do you have any change for her? \n"
     );
-    while (seventhLoop === true) {
+    while (seventhLoop) {
       if (answer7 == "right") {
         begin();
         seventhLoop = false;
@@ -248,9 +247,9 @@ FIFTH ROOM ENDS/SIXTH ROOM BEGINS ++++++++++++++++++++++++++++++++++++++++++++++
   }
   //Mirabelles
   async function stateEight() {
-    let eigthLoop = true;
     let answer8 = await ask("Welcome to Mirabelles. \n");
-    while (eigththLoop === true) {
+    let eigthLoop = true;
+    while (eigththLoop) {
       if (answer8 == "right") {
         stateseven();
         eigthLoop = false;
